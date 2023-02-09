@@ -83,7 +83,8 @@ classdef sinusoidFitTool < handle
     methods
         function this = sinusoidFitTool()
 
-            this.main_figure = figure('Position', [100 100 2000 1200]);
+
+            this.main_figure = figure('units', 'normalized', 'Position', [0.1 0.1 0.8 0.8]);
             this.control_panel_width = 1 - this.amplitude_panel_width - this.component_panel_width - this.result_panel_width;
 
             colors = lines(5);
@@ -440,7 +441,7 @@ classdef sinusoidFitTool < handle
               ( ...
                 this.control_panel, ...
                 'Style', 'text', ...
-                'string', 'Total RMS Error: ', ...
+                'string', 'RMS Error: ', ...
                 'Units', 'normalized', ...
                 'Position', [0.1 0.1 0.9 0.05], ...
                 'Fontsize', 24, ...
@@ -850,7 +851,8 @@ classdef sinusoidFitTool < handle
                 set(this.amplitude_plot, 'xdata', harmonics, 'ydata', amplitudes);
 
                 xlimits = [double(min(harmonics))-0.5 double(max(harmonics))+0.5];
-                set(this.amplitude_axes, 'xlim', xlimits)
+                ylimits = [-0.1 ceil(max(amplitudes))];
+                set(this.amplitude_axes, 'xlim', xlimits, 'ylim', ylimits)
 
             end
         end
