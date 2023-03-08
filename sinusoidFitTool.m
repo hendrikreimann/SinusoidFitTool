@@ -851,7 +851,12 @@ classdef sinusoidFitTool < handle
                 set(this.amplitude_plot, 'xdata', harmonics, 'ydata', amplitudes);
 
                 xlimits = [double(min(harmonics))-0.5 double(max(harmonics))+0.5];
-                ylimits = [-0.1 ceil(max(amplitudes))];
+                max_amplitude = ceil(max(amplitudes));
+                if max_amplitude > 0
+                    ylimits = [-0.1 max_amplitude];
+                else
+                    ylimits = [-0.1 0];
+                end
                 set(this.amplitude_axes, 'xlim', xlimits, 'ylim', ylimits)
 
             end
